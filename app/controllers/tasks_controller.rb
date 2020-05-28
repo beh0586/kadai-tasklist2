@@ -22,7 +22,7 @@ class TasksController < ApplicationController
       flash[:success] = 'タスクを作成しました。'
       redirect_to root_url
     else
-      @tasks = current_user.tasks.order(id: :desc).page(params[:page])
+      @tasks = current_user.tasks.order(id: :desc)
       flash.now[:danger] = 'タスクの作成に失敗しました。'
       render 'tasks/index'
     end
