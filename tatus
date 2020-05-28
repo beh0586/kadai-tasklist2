@@ -1,0 +1,34 @@
+[1mdiff --git a/app/views/tasks/index.html.erb b/app/views/tasks/index.html.erb[m
+[1mindex 7e010ca..2d186af 100644[m
+[1m--- a/app/views/tasks/index.html.erb[m
+[1m+++ b/app/views/tasks/index.html.erb[m
+[36m@@ -1,6 +1,9 @@[m
+ <div class="center jumbotron">[m
+   <div class="text-center">[m
+     <h1>Welcome to the tasklist</h1>[m
+[31m-    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>[m
+[32m+[m[32m    <ul class="navbar-nav">[m
+[32m+[m[32m      <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>[m
+[32m+[m[32m      <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>[m
+[32m+[m[32m    </ul>[m
+   </div>[m
+ </div>[m
+\ No newline at end of file[m
+[1mdiff --git a/config/routes.rb b/config/routes.rb[m
+[1mindex 46769ae..4424912 100644[m
+[1m--- a/config/routes.rb[m
+[1m+++ b/config/routes.rb[m
+[36m@@ -3,8 +3,13 @@[m [mRails.application.routes.draw do[m
+   get 'users/show'[m
+   get 'users/new'[m
+   get 'users/create'[m
+[32m+[m[41m  [m
+   root to: 'tasks#index'[m
+   [m
+[32m+[m[32m  get 'login', to: 'sessions#new'[m
+[32m+[m[32m  post 'login', to: 'sessions#create'[m
+[32m+[m[32m  delete 'logout', to: 'sessions#destroy'[m
+[32m+[m[41m  [m
+   get 'signup', to: 'users#new'[m
+   resources :users, only: [:index, :show, :new, :create][m
+ [m
