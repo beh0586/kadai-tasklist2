@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_to root_url
   end
 
   def new
