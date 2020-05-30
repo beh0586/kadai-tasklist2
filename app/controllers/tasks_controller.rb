@@ -3,14 +3,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
-    if logged_in?
-      @task = current_user.tasks.build  # form_with 用
+#    if logged_in?
+#      @task = current_user.tasks.build  # form_with 用
       @tasks = current_user.tasks.order(id: :desc)
-    end
+#    end
   end
 
-  def show
-  end
+#  def show
+#  end
 
   def new
     @task = Task.new
@@ -24,12 +24,12 @@ class TasksController < ApplicationController
     else
       @tasks = current_user.tasks.order(id: :desc)
       flash.now[:danger] = 'タスクの作成に失敗しました。'
-      render 'tasks/index'
+      render :new
     end
   end
 
-  def edit
-  end
+#  def edit
+#  end
 
   def update
     if @task.update(task_params)
